@@ -1,0 +1,28 @@
+$text: #e5eae8;
+$background: #070807;
+$primary: #a9d0bf;
+$secondary: #3f6073;
+$accent: #6785ab;
+
+body {
+  background-color: $background;
+  color: $text;
+
+  padding: 0;
+  margin: 0;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
