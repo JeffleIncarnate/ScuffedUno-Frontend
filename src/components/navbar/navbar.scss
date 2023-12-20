@@ -1,0 +1,54 @@
+@import "../../variables";
+
+@mixin defaultLoginOut {
+  color: $text;
+
+  font-weight: bold;
+  font-size: 1.75rem;
+
+  margin-right: 5%;
+}
+
+.NavbarDefault {
+  width: 100%;
+
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  // Logged In
+  button {
+    @include defaultLoginOut();
+
+    border: none;
+
+    background: transparent;
+  }
+
+  // Logged Out
+  a {
+    @include defaultLoginOut();
+
+    text-decoration: none;
+  }
+}
+
+.NavbarLoginRegister {
+  width: 100%;
+
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  h2 {
+    font-size: 4rem;
+
+    span {
+      color: $accent;
+    }
+  }
+}
