@@ -10,6 +10,9 @@ body {
   &::-webkit-scrollbar {
     display: none;
   }
+
+  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 html {
@@ -21,4 +24,10 @@ html {
   padding: 0;
 
   box-sizing: border-box;
+}
+button {
+  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
+
+  cursor: pointer;
 }

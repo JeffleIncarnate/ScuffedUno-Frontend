@@ -18,6 +18,8 @@
   align-items: center;
   justify-content: flex-end;
 
+  height: 10vh;
+
   // Logged In
   button {
     @include defaultLoginOut();
@@ -37,6 +39,7 @@
 
 .NavbarLoginRegister {
   width: 100%;
+  height: 10vh;
 
   padding: 1rem;
 
@@ -46,6 +49,8 @@
 
   h2 {
     font-size: 4rem;
+
+    margin-left: 5%;
 
     span {
       color: $accent;

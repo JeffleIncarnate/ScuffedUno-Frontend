@@ -1,0 +1,68 @@
+@import "../../variables";
+@import "../../function";
+
+@mixin baseColumn($left: true) {
+  height: 100%;
+
+  @if $left {
+    border-radius: 2rem 0 0 2rem;
+  } @else {
+    border-radius: 0 2rem 2rem 0;
+  }
+}
+
+@mixin image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../../assets/cards.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.LoginRegister {
+  @include flexCenter();
+
+  background-color: rgba($grey, 0.3);
+
+  margin: 7vh 10%;
+
+  width: 80%;
+  height: 70vh;
+
+  border-radius: 2rem;
+
+  position: relative;
+
+  & > button {
+    position: absolute;
+    top: 2rem;
+    left: 40%;
+
+    min-width: 200px;
+
+    transform: translateX(-50%);
+
+    border: none;
+    border-radius: 2rem;
+
+    background-color: $grey;
+    color: $text;
+
+    padding: 0.5rem 2rem;
+
+    font-size: 1.7rem;
+  }
+
+  .LoginRegister__Form {
+    @include baseColumn(true);
+
+    width: 40%;
+  }
+
+  .LoginRegister__Picture {
+    @include baseColumn(false);
+    @include image();
+
+    width: 60%;
+  }
+}
