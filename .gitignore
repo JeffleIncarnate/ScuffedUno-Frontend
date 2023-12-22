@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# nothing to see here 🙈🙈🙈
+.env
