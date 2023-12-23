@@ -7,13 +7,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { useAppSelector /*useAppDispatch*/ } from "../../state/hooks";
+import { useAppSelector, useAppDispatch } from "../../state/hooks";
+import { logout } from "../../state/reducers/authSlice";
 
 function Navbar() {
   const location = useLocation();
 
   const loggedIn = useAppSelector((state) => state.auth.loggedIn);
-  // const dispatch = useAppDispatch();
 
   return (
     <>
@@ -30,9 +30,20 @@ function Navbar() {
 
 // When the user is logged in
 const NavbarLoggedIn = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+
+    dispatch(logout());
+    navigate("/setup?mode=login");
+  };
+
   return (
     <nav className="NavbarDefault">
-      <button>
+      <button onClick={() => handleLogout()}>
         Logout <FontAwesomeIcon icon={faRightFromBracket} />
       </button>
     </nav>

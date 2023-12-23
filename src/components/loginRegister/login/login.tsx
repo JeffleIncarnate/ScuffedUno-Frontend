@@ -56,7 +56,7 @@ function _Login() {
         // Now that we know that login request is successful, we should then update the redux store
         dispatch(login());
 
-        navigate("/");
+        navigate("/", {});
       }}
     >
       <h2>Login</h2>
