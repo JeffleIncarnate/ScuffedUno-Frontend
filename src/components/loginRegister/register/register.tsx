@@ -13,7 +13,7 @@ function _Register() {
         <input type="text" id="" placeholder="Confirm Password" />
       </div>
 
-      <button type="submit">Login</button>
+      <button type="submit">Register</button>
     </form>
   );
 }
