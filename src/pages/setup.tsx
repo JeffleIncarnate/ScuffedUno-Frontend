@@ -1,4 +1,3 @@
-import Navbar from "../components/navbar/navbar";
 import LoginRegister from "../components/loginRegister/loginRegister";
 
 function SetupPage() {
@@ -6,7 +5,6 @@ function SetupPage() {
 
   return (
     <>
-      <Navbar />
       <LoginRegister />
     </>
   );
