@@ -1,7 +1,5 @@
 import "./navbar.scss";
 
-import { useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRightToBracket,
@@ -9,9 +7,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import { useAppSelector /*useAppDispatch*/ } from "../../state/hooks";
+
 function Navbar() {
-  const [loggedIn, setLoggedIn] = useState(false);
   const location = useLocation();
+
+  const loggedIn = useAppSelector((state) => state.auth.loggedIn);
+  // const dispatch = useAppDispatch();
 
   return (
     <>
