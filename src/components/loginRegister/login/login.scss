@@ -1,13 +1,16 @@
 @import "../../../variables";
 
-@mixin input {
-  width: 80%;
+@mixin input($width, $margin) {
+  width: $width;
 
-  margin: 0.5rem 10%;
+  margin: $margin;
   padding: 1rem;
 
   border: none;
   border-radius: 1rem;
+
+  color: $text;
+  font-size: 1rem;
 }
 
 .Login {
@@ -26,8 +29,34 @@
     margin: 1rem 0;
   }
 
+  #{&}__Password {
+    position: relative;
+
+    width: 80%;
+
+    input {
+      @include input(100%, 0);
+
+      background-color: $accent;
+
+      &::placeholder {
+        color: $text;
+        font-size: 1rem;
+      }
+    }
+
+    .Login__Password__Icon {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+
+      transform: translateY(-50%);
+      font-size: 1.25rem;
+    }
+  }
+
   input {
-    @include input();
+    @include input(80%, 0.5rem 10%);
 
     background-color: $accent;
 
@@ -42,7 +71,7 @@
   }
 
   button {
-    @include input();
+    @include input(80%, 0.5rem 10%);
 
     font-size: 1rem;
 
