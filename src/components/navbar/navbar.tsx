@@ -7,13 +7,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { useAppSelector, useAppDispatch } from "../../state/hooks";
+import { useAppDispatch } from "../../state/hooks";
 import { logout } from "../../state/reducers/authSlice";
+import { useEffect, useState } from "react";
+import { store } from "../../state/store";
 
 function Navbar() {
   const location = useLocation();
 
-  const loggedIn = useAppSelector((state) => state.auth.loggedIn);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      setLoggedIn(store.getState().auth.loggedIn);
+
+      return () => {
+        unsubscribe();
+      };
+    });
+  }, []);
 
   return (
     <>
