@@ -1,14 +1,43 @@
 import "./index.scss";
 
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { initialReducer } from "./state/initialReducer";
 
 // Routes
 import HomePage from "./pages/home";
 import SetupPage from "./pages/setup";
 import Navbar from "./components/navbar/navbar";
+import { useAppDispatch } from "./state/hooks";
+import { login } from "./state/reducers/authSlice";
+import { toast } from "react-toastify";
 
 function App() {
+  // This is run the first time the page loads and if the use has a refresh token
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    (async () => {
+      let res = await initialReducer();
+
+      if (!res.success) {
+        toast.error("Imagine shit refresh token L+bozo");
+
+        return;
+      }
+
+      dispatch(
+        login({
+          accessToken: res.accessToken,
+          refreshToken: res.refreshToken,
+        })
+      );
+
+      toast.success("Successful auto login");
+    })();
+  }, []);
+
   return (
     <>
       <Navbar />
