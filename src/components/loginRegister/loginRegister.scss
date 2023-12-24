@@ -55,6 +55,7 @@
 
   .LoginRegister__Form {
     @include baseColumn(true);
+    @include disableTextHighlight();
 
     width: 40%;
   }
