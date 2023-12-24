@@ -22,8 +22,6 @@ function App() {
       let res = await initialReducer();
 
       if (!res.success) {
-        toast.error("Imagine shit refresh token L+bozo");
-
         return;
       }
 
