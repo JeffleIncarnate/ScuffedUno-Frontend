@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
 import "./loginRegister.scss";
 
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import _Login from "./login/login";
 import _Register from "./register/register";
@@ -45,7 +46,9 @@ function LoginRegister() {
         {mode === "login" ? "Register" : "Login"}
       </button>
       <div className="LoginRegister__Form">
-        {mode === "login" ? <_Login /> : <_Register />}
+        <AnimatePresence mode="wait">
+          {mode === "login" ? <_Login /> : <_Register />}
+        </AnimatePresence>
       </div>
       <div className="LoginRegister__Picture"></div>
     </div>

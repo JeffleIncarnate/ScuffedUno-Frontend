@@ -18,6 +18,7 @@ import { useLogin } from "../../../hooks/useLogin";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../state/reducers/authSlice";
+import { motion } from "framer-motion";
 
 function _Login() {
   let navigate = useNavigate();
@@ -39,8 +40,13 @@ function _Login() {
   const password = useRef<HTMLInputElement>(null);
 
   return (
-    <form
+    <motion.form
       className="Login"
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.3 }}
+      key={"1"}
       onSubmit={async (e) => {
         e.preventDefault();
         setButtonDisabled(true);
@@ -92,7 +98,7 @@ function _Login() {
           "Login"
         )}
       </button>
-    </form>
+    </motion.form>
   );
 }
 
