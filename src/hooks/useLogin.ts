@@ -1,14 +1,22 @@
 import { loginRequest } from "../requests/login";
 
-interface IReturn {
-  success: boolean;
+type SuccessResponse = {
+  success: true;
+  accessToken: string;
+  refreshToken: string;
+};
+
+type ErrorResponse = {
+  success: false;
   message: string;
-}
+};
+
+type MyResponseType = SuccessResponse | ErrorResponse;
 
 async function useLogin(
   username: React.RefObject<HTMLInputElement>,
   password: React.RefObject<HTMLInputElement>
-): Promise<IReturn> {
+): Promise<MyResponseType> {
   if (!username.current || !password.current) {
     return {
       success: false,
@@ -44,11 +52,15 @@ async function useLogin(
     };
   }
 
-  // setting the items local storage for refresh and access in session cause tho the fuck likes access tokens. Me? Nah, fuck that cookie storage on TOP! 💪💪💪
-  localStorage.setItem("refreshToken", response.refreshToken!);
-  sessionStorage.setItem("accessToken", response.accessToken!);
+  // setting the items local storage for refresh and access in session cause tho the fuck likes access tokens. Me? Nah, fuck that cookie SESSIONS on TOP! 💪💪💪
+  sessionStorage.setItem("accessToken", response.accessToken);
+  localStorage.setItem("refreshToken", response.refreshToken);
 
-  return { success: true, message: "" };
+  return {
+    success: true,
+    accessToken: response.accessToken,
+    refreshToken: response.refreshToken,
+  };
 }
 
 export { useLogin };

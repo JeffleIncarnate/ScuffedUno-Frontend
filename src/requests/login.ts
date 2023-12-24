@@ -1,20 +1,22 @@
 import { API_URL } from ".";
 
-interface IReturnBase {
-  success: boolean;
+type SuccessResponse = {
+  success: true;
+  accessToken: string;
+  refreshToken: string;
+};
+
+type ErrorResponse = {
+  success: false;
   message: string;
-  accessToken?: string;
-  refreshToken?: string;
-}
+};
 
-type IReturn<T extends boolean> = T extends true
-  ? IReturnBase & { accessToken: string; refreshToken: string }
-  : IReturnBase;
+type MyResponseType = SuccessResponse | ErrorResponse;
 
-async function loginRequest<T extends boolean>(
+async function loginRequest(
   username: string,
   password: string
-): Promise<IReturn<T>> {
+): Promise<MyResponseType> {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -39,7 +41,7 @@ async function loginRequest<T extends boolean>(
       return {
         success: false,
         message: "Is your API on?",
-      } as IReturn<T>;
+      };
     }
   }
 
@@ -48,16 +50,17 @@ async function loginRequest<T extends boolean>(
   if (!response.ok) {
     return {
       success: false,
-      message: jsonResponse.details.reason as string,
-    } as IReturn<T>;
+      message:
+        (jsonResponse.details.reason as string) ||
+        "Some unknown error has occurred. Please try again later",
+    };
   }
 
   return {
     success: true,
-    message: "",
     accessToken: jsonResponse.accessToken,
     refreshToken: jsonResponse.refreshToken,
-  } as IReturn<T>;
+  };
 }
 
 export { loginRequest };
