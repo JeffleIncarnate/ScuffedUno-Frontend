@@ -1,14 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
 // Define a type for the slice state
 interface AuthState {
   loggedIn: boolean;
+  accessToken: string | undefined;
+  refreshToken: string | undefined;
+}
+
+// Define a type for payload of action
+interface Payload {
+  accessToken: string;
+  refreshToken: string;
 }
 
 // Define the initial state using that type
 const initialState: AuthState = {
   loggedIn: false,
+  accessToken: undefined,
+  refreshToken: undefined,
 };
 
 export const authSlice = createSlice({
@@ -16,11 +26,15 @@ export const authSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    login: (state) => {
+    login: (state, action: PayloadAction<Payload>) => {
       state.loggedIn = true;
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
     },
     logout: (state) => {
       state.loggedIn = false;
+      state.accessToken = undefined;
+      state.refreshToken = undefined;
     },
   },
 });
