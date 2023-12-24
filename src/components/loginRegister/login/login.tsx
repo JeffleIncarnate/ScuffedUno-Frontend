@@ -45,18 +45,24 @@ function _Login() {
         e.preventDefault();
         setButtonDisabled(true);
 
-        const { success, message } = await useLogin(username, password);
+        // This handles everything except redux hooks
+        const response = await useLogin(username, password);
 
         setButtonDisabled(false);
 
-        if (!success) {
-          return toast.error(message);
+        if (!response.success) {
+          return toast.error(response.message);
         }
 
-        // Now that we know that login request is successful, we should then update the redux store
-        dispatch(login());
+        // REDUX!
+        dispatch(
+          login({
+            accessToken: response.accessToken,
+            refreshToken: response.refreshToken,
+          })
+        );
 
-        navigate("/", {});
+        navigate("/");
       }}
     >
       <h2>Login</h2>
