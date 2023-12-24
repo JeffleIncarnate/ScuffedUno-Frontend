@@ -1,6 +1,6 @@
 import "./index.scss";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { initialReducer } from "./state/initialReducer";
@@ -16,24 +16,29 @@ import { toast } from "react-toastify";
 function App() {
   // This is run the first time the page loads and if the use has a refresh token
   const dispatch = useAppDispatch();
+  const initialized = useRef(false);
 
   useEffect(() => {
-    (async () => {
-      let res = await initialReducer();
+    if (!initialized.current) {
+      initialized.current = true;
 
-      if (!res.success) {
-        return;
-      }
+      (async () => {
+        let res = await initialReducer();
 
-      dispatch(
-        login({
-          accessToken: res.accessToken,
-          refreshToken: res.refreshToken,
-        })
-      );
+        if (!res.success) {
+          return;
+        }
 
-      toast.success("Successful auto login");
-    })();
+        dispatch(
+          login({
+            accessToken: res.accessToken,
+            refreshToken: res.refreshToken,
+          })
+        );
+
+        toast.success("Successful auto login");
+      })();
+    }
   }, []);
 
   return (
