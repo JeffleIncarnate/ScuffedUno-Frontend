@@ -4,14 +4,14 @@ import { useEffect, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { initialReducer } from "./state/initialReducer";
+import { useAppDispatch } from "./state/hooks";
+import { login } from "./state/reducers/authSlice";
+import { toast } from "react-toastify";
 
 // Routes
 import HomePage from "./pages/home";
 import SetupPage from "./pages/setup";
 import Navbar from "./components/navbar/navbar";
-import { useAppDispatch } from "./state/hooks";
-import { login } from "./state/reducers/authSlice";
-import { toast } from "react-toastify";
 
 function App() {
   // This is run the first time the page loads and if the use has a refresh token
