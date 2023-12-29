@@ -1,0 +1,49 @@
+@import "../../variables";
+@import "../../function";
+
+.Splash {
+  width: 100%;
+
+  #{&}__Headings {
+    text-align: center;
+
+    h1 {
+      font-size: 4rem;
+
+      span {
+        color: $accent;
+      }
+    }
+  }
+
+  #{&}__Forms {
+    width: 100%;
+
+    margin-top: 20svh;
+
+    @include flexCenter();
+
+    form {
+      width: 30%;
+
+      @include flexCenter();
+      flex-direction: column;
+
+      input {
+        background-color: $secondary;
+        color: $text;
+
+        border: none;
+        border-radius: 2rem;
+        padding: 1rem;
+
+        margin: 1rem 25%;
+        width: 50%;
+
+        &::placeholder {
+          color: $text;
+        }
+      }
+    }
+  }
+}
