@@ -4,8 +4,17 @@
 .Splash {
   width: 100%;
 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
   #{&}__Headings {
-    text-align: center;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
 
     h1 {
       font-size: 4rem;
@@ -16,33 +25,55 @@
     }
   }
 
-  #{&}__Forms {
+  #{&}__Actions {
+    @include flexCenter;
+    gap: 5rem;
+
     width: 100%;
 
-    margin-top: 20svh;
+    margin-top: 7rem;
 
-    @include flexCenter();
+    .Splash__Join {
+      text-align: center;
 
-    form {
       width: 30%;
 
-      @include flexCenter();
-      flex-direction: column;
-
       input {
+        width: clamp(250px, 100%, 400px);
+
+        margin-top: 0.5rem;
+        padding: 0.5rem 1rem;
+
         background-color: $secondary;
-        color: $text;
 
         border: none;
-        border-radius: 2rem;
-        padding: 1rem;
+        border-radius: 1rem;
 
-        margin: 1rem 25%;
-        width: 50%;
+        color: $text;
 
         &::placeholder {
           color: $text;
         }
+      }
+    }
+
+    .Splash__Create {
+      text-align: center;
+
+      width: 30%;
+
+      button {
+        width: clamp(250px, 100%, 400px);
+
+        margin-top: 0.5rem;
+        padding: 0.5rem 1rem;
+
+        background-color: $secondary;
+
+        border: none;
+        border-radius: 1rem;
+
+        color: $text;
       }
     }
   }
