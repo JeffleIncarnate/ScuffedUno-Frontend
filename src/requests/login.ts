@@ -11,12 +11,10 @@ type ErrorResponse = {
   message: string;
 };
 
-type MyResponseType = SuccessResponse | ErrorResponse;
-
 async function loginRequest(
   username: string,
   password: string
-): Promise<MyResponseType> {
+): Promise<SuccessResponse | ErrorResponse> {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -36,6 +34,7 @@ async function loginRequest(
 
   try {
     response = await fetch(`${API_URL}/v1/api/auth/login`, requestOptions);
+    console.log(response);
   } catch (err) {
     if (response === undefined) {
       return {
@@ -46,6 +45,8 @@ async function loginRequest(
   }
 
   let jsonResponse = await response.json();
+
+  console.log(response.ok);
 
   if (!response.ok) {
     return {

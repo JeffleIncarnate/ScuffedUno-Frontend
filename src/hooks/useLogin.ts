@@ -11,12 +11,10 @@ type ErrorResponse = {
   message: string;
 };
 
-type MyResponseType = SuccessResponse | ErrorResponse;
-
 async function useLogin(
   username: React.RefObject<HTMLInputElement>,
   password: React.RefObject<HTMLInputElement>
-): Promise<MyResponseType> {
+): Promise<SuccessResponse | ErrorResponse> {
   if (!username.current || !password.current) {
     return {
       success: false,
