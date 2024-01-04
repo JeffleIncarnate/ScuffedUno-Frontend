@@ -10,9 +10,7 @@ type ErrorResponse = {
   success: false;
 };
 
-type MyResponseType = SuccessResponse | ErrorResponse;
-
-async function initialReducer(): Promise<MyResponseType> {
+async function initialReducer(): Promise<SuccessResponse | ErrorResponse> {
   let refreshToken = localStorage.getItem("refreshToken");
 
   if (refreshToken === null) {
