@@ -26,8 +26,9 @@
   }
 
   #{&}__Actions {
-    @include flexCenter;
-    gap: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     width: 100%;
 
@@ -35,6 +36,8 @@
 
     .Splash__Join {
       text-align: center;
+
+      margin-right: 1rem;
 
       width: 30%;
 
@@ -59,6 +62,8 @@
 
     .Splash__Create {
       text-align: center;
+
+      margin-left: 1rem;
 
       width: 30%;
 
