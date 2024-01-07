@@ -8,11 +8,7 @@ import {
   faCircleNotch,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { useAppSelector, useAppDispatch } from "../../../state/hooks";
-import {
-  notShowPassword,
-  showPassword,
-} from "../../../state/reducers/passwordSlice";
+import { useAppDispatch } from "../../../state/hooks";
 import { useRef, useState } from "react";
 import { useLogin } from "../../../hooks/useLogin";
 import { toast } from "react-toastify";
@@ -21,18 +17,16 @@ import { login } from "../../../state/reducers/authSlice";
 import { motion } from "framer-motion";
 
 function _Login() {
-  let navigate = useNavigate();
-
-  // Redux State
-  const passwordShown = useAppSelector((state) => state.password.showPassword);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   // Local state
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
 
   // Reducer
   const reducer = () => {
-    passwordShown ? dispatch(notShowPassword()) : dispatch(showPassword());
+    setPasswordShown((prev) => !prev);
   };
 
   // Refs
