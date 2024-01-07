@@ -44,10 +44,15 @@ function App() {
   return (
     <>
       <Navbar />
-      <ToastContainer position="top-right" theme="colored" />
+      <ToastContainer
+        pauseOnHover={false}
+        position="top-right"
+        theme="colored"
+      />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/setup" element={<SetupPage />} />
+        {/* <Route path="/room" element={<SetupPage />} /> */}
       </Routes>
     </>
   );

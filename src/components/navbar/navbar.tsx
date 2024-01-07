@@ -29,7 +29,9 @@ function Navbar() {
 
   return (
     <>
-      {loggedIn ? (
+      {loggedIn && location.pathname === "/room" ? (
+        <NavbarRoom />
+      ) : loggedIn ? (
         <NavbarLoggedIn />
       ) : location.pathname === "/setup" ? (
         <NavbarLoginRegister />
@@ -83,6 +85,16 @@ const NavbarLoginRegister = () => {
           navigate("/");
         }}
       >
+        Scuffed<span>Uno</span>
+      </h2>
+    </nav>
+  );
+};
+
+const NavbarRoom = () => {
+  return (
+    <nav className="NavbarRoom">
+      <h2>
         Scuffed<span>Uno</span>
       </h2>
     </nav>
