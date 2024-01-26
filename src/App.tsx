@@ -8,9 +8,10 @@ import { useAppDispatch } from "./state/hooks";
 import { login } from "./state/reducers/authSlice";
 import { toast } from "react-toastify";
 
-// Routes
+// Components
 import HomePage from "./pages/home";
 import SetupPage from "./pages/setup";
+import RoomPage from "./pages/room";
 import Navbar from "./components/navbar/navbar";
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/setup" element={<SetupPage />} />
-        {/* <Route path="/room" element={<SetupPage />} /> */}
+        <Route path="/room" element={<RoomPage />} />
       </Routes>
     </>
   );

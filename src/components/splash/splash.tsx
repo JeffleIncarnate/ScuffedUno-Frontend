@@ -2,11 +2,13 @@ import "./splash.scss";
 
 import { useRef } from "react";
 import { toast } from "react-toastify";
+import { io } from "socket.io-client";
 
 import { socket } from "../../core/socket/socket";
 import { useNavigate } from "react-router-dom";
 import { IRoomArgs, createRoom } from "../../state/reducers/roomSlice";
 import { useAppDispatch } from "../../state/hooks";
+import { store } from "../../state/store";
 
 function Splash() {
   const gameId = useRef<HTMLInputElement>(null);
@@ -23,6 +25,8 @@ function Splash() {
     if (!socket.active) {
       socket.connect();
     }
+
+    console.log(socket.auth);
 
     socket.emit("room:join", gameId.current.value);
   };
@@ -42,8 +46,6 @@ function Splash() {
   });
 
   socket.on("room:create-success", (roomArgs: IRoomArgs) => {
-    console.log(roomArgs);
-
     dispatch(createRoom(roomArgs));
 
     navigate("/room");
