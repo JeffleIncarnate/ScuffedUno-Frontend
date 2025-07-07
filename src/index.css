@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: oklch(0 0 0);
+  --color-text: oklch(1 0 0);
+  --color-accent: oklch(0.6 0.0717 261.82);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+/* this is just common sense, how is this NOT the default */
+button {
+  cursor: pointer;
+}
